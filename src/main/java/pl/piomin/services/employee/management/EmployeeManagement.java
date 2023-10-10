@@ -32,6 +32,7 @@ public class EmployeeManagement implements EmployeeInternalAPI, EmployeeExternal
         return repository.findByOrganizationId(id);
     }
 
+    @Override
     @Transactional
     public EmployeeDTO add(EmployeeDTO employee) {
         return mapper.employeeToEmployeeDTO(

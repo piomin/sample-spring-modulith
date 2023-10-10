@@ -35,6 +35,7 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
         this.mapper = mapper;
     }
 
+    @Override
     public DepartmentDTO getDepartmentByIdWithEmployees(Long id) {
         DepartmentDTO d = repository.findDTOById(id);
         List<EmployeeDTO> dtos = employeeInternalAPI.getEmployeesByDepartmentId(id);
@@ -49,6 +50,7 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
         add(new DepartmentDTO(null, event.getId(), "Management"));
     }
 
+    @Override
     public DepartmentDTO add(DepartmentDTO department) {
         return mapper.departmentToEmployeeDTO(
                 repository.save(mapper.departmentDTOToEmployee(department))
