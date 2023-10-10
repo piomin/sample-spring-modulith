@@ -3,9 +3,9 @@ package pl.piomin.services.organization.management;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piomin.services.department.DepartmentAPI;
+import pl.piomin.services.department.DepartmentInternalAPI;
 import pl.piomin.services.department.DepartmentDTO;
-import pl.piomin.services.employee.EmployeeAPI;
+import pl.piomin.services.employee.EmployeeInternalAPI;
 import pl.piomin.services.employee.EmployeeDTO;
 import pl.piomin.services.OrganizationAddEvent;
 import pl.piomin.services.organization.OrganizationDTO;
@@ -19,29 +19,29 @@ public class OrganizationManagement {
 
     private final ApplicationEventPublisher events;
     private final OrganizationRepository repository;
-    private final DepartmentAPI departmentAPI;
-    private final EmployeeAPI employeeAPI;
+    private final DepartmentInternalAPI departmentInternalAPI;
+    private final EmployeeInternalAPI employeeInternalAPI;
 
     public OrganizationManagement(ApplicationEventPublisher events,
                                   OrganizationRepository repository,
-                                  DepartmentAPI departmentAPI,
-                                  EmployeeAPI employeeAPI) {
+                                  DepartmentInternalAPI departmentInternalAPI,
+                                  EmployeeInternalAPI employeeInternalAPI) {
         this.events = events;
         this.repository = repository;
-        this.departmentAPI = departmentAPI;
-        this.employeeAPI = employeeAPI;
+        this.departmentInternalAPI = departmentInternalAPI;
+        this.employeeInternalAPI = employeeInternalAPI;
     }
 
     public OrganizationDTO findByIdWithEmployees(Long id) {
         OrganizationDTO dto = repository.findDTOById(id);
-        List<EmployeeDTO> dtos = employeeAPI.getEmployeesByOrganizationId(id);
+        List<EmployeeDTO> dtos = employeeInternalAPI.getEmployeesByOrganizationId(id);
         dto.employees().addAll(dtos);
         return dto;
     }
 
     public OrganizationDTO findByIdWithDepartments(Long id) {
         OrganizationDTO dto = repository.findDTOById(id);
-        List<DepartmentDTO> dtos = departmentAPI.getDepartmentsByOrganizationId(id);
+        List<DepartmentDTO> dtos = departmentInternalAPI.getDepartmentsByOrganizationId(id);
         dto.departments().addAll(dtos);
         return dto;
     }

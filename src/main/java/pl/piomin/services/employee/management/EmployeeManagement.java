@@ -2,17 +2,16 @@ package pl.piomin.services.employee.management;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.piomin.services.employee.EmployeeAPI;
+import pl.piomin.services.employee.EmployeeInternalAPI;
 import pl.piomin.services.employee.EmployeeDTO;
 import pl.piomin.services.employee.EmployeeExternalAPI;
 import pl.piomin.services.employee.mapper.EmployeeMapper;
-import pl.piomin.services.employee.model.Employee;
 import pl.piomin.services.employee.repository.EmployeeRepository;
 
 import java.util.List;
 
 @Service
-public class EmployeeManagement implements EmployeeAPI, EmployeeExternalAPI {
+public class EmployeeManagement implements EmployeeInternalAPI, EmployeeExternalAPI {
 
     private EmployeeRepository repository;
 

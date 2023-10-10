@@ -7,6 +7,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import pl.piomin.services.department.DepartmentDTO;
+import pl.piomin.services.employee.EmployeeDTO;
 import pl.piomin.services.employee.model.Employee;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -21,13 +23,16 @@ public class AppRestControllerTests {
     @Test
     @Order(1)
     void shouldAddNewEmployee() {
-        Employee emp = new Employee();
-        emp.setAge(30);
-        emp.setDepartmentId(1L);
-        emp.setOrganizationId(1L);
-        emp.setPosition("HR");
-        emp.setName("Test");
-        emp = restTemplate.postForObject("/employees", emp, Employee.class);
-        assertNotNull(emp.getId());
+        EmployeeDTO emp = new EmployeeDTO(null, 1L, 1L, "Test", 30, "HR");
+        emp = restTemplate.postForObject("/employees", emp, EmployeeDTO.class);
+        assertNotNull(emp.id());
+    }
+
+    @Test
+    @Order(1)
+    void shouldAddNewDepartment() {
+        DepartmentDTO dep = new DepartmentDTO(null, 1L, "Test");
+        dep = restTemplate.postForObject("/departments", dep, DepartmentDTO.class);
+        assertNotNull(dep.id());
     }
 }
