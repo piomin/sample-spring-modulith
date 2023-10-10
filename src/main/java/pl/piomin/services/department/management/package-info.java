@@ -1,4 +1,4 @@
 @org.springframework.modulith.ApplicationModule(
-        allowedDependencies = "employee"
+   allowedDependencies = {"employee"}
 )
 package pl.piomin.services.department.management;
