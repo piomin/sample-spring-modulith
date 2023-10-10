@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.modulith.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 import pl.piomin.services.OrganizationAddEvent;
+import pl.piomin.services.OrganizationRemoveEvent;
 import pl.piomin.services.department.DepartmentInternalAPI;
 import pl.piomin.services.department.DepartmentDTO;
 import pl.piomin.services.department.DepartmentExternalAPI;
@@ -48,6 +49,12 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
         LOG.info("onNewOrganizationEvent(orgId={})", event.getId());
         add(new DepartmentDTO(null, event.getId(), "HR"));
         add(new DepartmentDTO(null, event.getId(), "Management"));
+    }
+
+    @ApplicationModuleListener
+    void onRemovedOrganizationEvent(OrganizationRemoveEvent event) {
+        LOG.info("onRemovedOrganizationEvent(orgId={})", event.getId());
+        repository.deleteByOrganizationId(event.getId());
     }
 
     @Override

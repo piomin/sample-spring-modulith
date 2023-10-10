@@ -22,4 +22,6 @@ public interface DepartmentRepository extends CrudRepository<Department, Long> {
            WHERE d.organizationId = :organizationId
            """)
     List<DepartmentDTO> findByOrganizationId(Long organizationId);
+
+    void deleteByOrganizationId(Long organizationId);
 }

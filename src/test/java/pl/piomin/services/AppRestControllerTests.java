@@ -24,7 +24,7 @@ public class AppRestControllerTests {
     @Order(1)
     void shouldAddNewEmployee() {
         EmployeeDTO emp = new EmployeeDTO(null, 1L, 1L, "Test", 30, "HR");
-        emp = restTemplate.postForObject("/employees", emp, EmployeeDTO.class);
+        emp = restTemplate.postForObject("/api/employees", emp, EmployeeDTO.class);
         assertNotNull(emp.id());
     }
 
@@ -32,7 +32,7 @@ public class AppRestControllerTests {
     @Order(1)
     void shouldAddNewDepartment() {
         DepartmentDTO dep = new DepartmentDTO(null, 1L, "Test");
-        dep = restTemplate.postForObject("/departments", dep, DepartmentDTO.class);
+        dep = restTemplate.postForObject("/api/departments", dep, DepartmentDTO.class);
         assertNotNull(dep.id());
     }
 }
