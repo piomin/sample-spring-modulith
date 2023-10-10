@@ -23,13 +23,16 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
     private final ApplicationEventPublisher events;
     private DepartmentRepository repository;
     private EmployeeInternalAPI employeeInternalAPI;
+    private DepartmentMapper mapper;
 
     public DepartmentManagement(DepartmentRepository repository,
                                 ApplicationEventPublisher events,
-                                EmployeeInternalAPI employeeInternalAPI) {
+                                EmployeeInternalAPI employeeInternalAPI,
+                                DepartmentMapper mapper) {
         this.repository = repository;
         this.events = events;
         this.employeeInternalAPI = employeeInternalAPI;
+        this.mapper = mapper;
     }
 
     public DepartmentDTO getDepartmentByIdWithEmployees(Long id) {
@@ -47,7 +50,9 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
     }
 
     public DepartmentDTO add(DepartmentDTO department) {
-        return DepartmentMapper.INSTANCE.departmentToEmployeeDTO(repository.save(DepartmentMapper.INSTANCE.departmentDTOToEmployee(department)));
+        return mapper.departmentToEmployeeDTO(
+                repository.save(mapper.departmentDTOToEmployee(department))
+        );
     }
 
     @Override

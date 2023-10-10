@@ -14,9 +14,12 @@ import java.util.List;
 public class EmployeeManagement implements EmployeeInternalAPI, EmployeeExternalAPI {
 
     private EmployeeRepository repository;
+    private EmployeeMapper mapper;
 
-    public EmployeeManagement(EmployeeRepository repository) {
+    public EmployeeManagement(EmployeeRepository repository,
+                              EmployeeMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Override
@@ -31,8 +34,8 @@ public class EmployeeManagement implements EmployeeInternalAPI, EmployeeExternal
 
     @Transactional
     public EmployeeDTO add(EmployeeDTO employee) {
-        return EmployeeMapper.INSTANCE.employeeToEmployeeDTO(
-                repository.save(EmployeeMapper.INSTANCE.employeeDTOToEmployee(employee))
+        return mapper.employeeToEmployeeDTO(
+                repository.save(mapper.employeeDTOToEmployee(employee))
         );
     }
 

@@ -9,6 +9,7 @@ import pl.piomin.services.employee.EmployeeInternalAPI;
 import pl.piomin.services.employee.EmployeeDTO;
 import pl.piomin.services.OrganizationAddEvent;
 import pl.piomin.services.organization.OrganizationDTO;
+import pl.piomin.services.organization.mapper.OrganizationMapper;
 import pl.piomin.services.organization.model.Organization;
 import pl.piomin.services.organization.repository.OrganizationRepository;
 
@@ -21,15 +22,18 @@ public class OrganizationManagement {
     private final OrganizationRepository repository;
     private final DepartmentInternalAPI departmentInternalAPI;
     private final EmployeeInternalAPI employeeInternalAPI;
+    private final OrganizationMapper mapper;
 
     public OrganizationManagement(ApplicationEventPublisher events,
                                   OrganizationRepository repository,
                                   DepartmentInternalAPI departmentInternalAPI,
-                                  EmployeeInternalAPI employeeInternalAPI) {
+                                  EmployeeInternalAPI employeeInternalAPI,
+                                  OrganizationMapper mapper) {
         this.events = events;
         this.repository = repository;
         this.departmentInternalAPI = departmentInternalAPI;
         this.employeeInternalAPI = employeeInternalAPI;
+        this.mapper = mapper;
     }
 
     public OrganizationDTO findByIdWithEmployees(Long id) {
@@ -47,10 +51,12 @@ public class OrganizationManagement {
     }
 
     @Transactional
-    public Organization add(Organization organization) {
-        Organization o = repository.save(organization);
-        events.publishEvent(new OrganizationAddEvent(o.getId()));
-        return o;
+    public OrganizationDTO add(OrganizationDTO organization) {
+        OrganizationDTO dto = mapper.organizationToOrganizationDTO(
+                repository.save(mapper.organizationDTOToOrganization(organization))
+        );
+        events.publishEvent(new OrganizationAddEvent(dto.id()));
+        return dto;
     }
 
 }
