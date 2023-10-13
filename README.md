@@ -9,4 +9,24 @@
 
 In this project, I'm demonstrating how to implement the modulith app using Spring support. Here are the [docs](https://docs.spring.io/spring-modulith) about the project. 
 
-This demo is still under active development. The final version will be ready soon...
+1. How to organize the SpringBoot in modular way and use Spring Modulith to simplify and verify the app structure: [Guide to Modulith with Spring Boot](https://piotrminkowski.com/2023/10/13/guide-to-modulith-with-spring-boot/)
+
+## Architecture
+
+Our sample app is divided into 4 logical modules:
+- **department** - manage `Department` entity
+- **employee** - manage `Employee` entity
+- **gateway** - expose internal modules over REST API
+- **organization** - manage `Organization` entity
+
+The following picture illustrates the architecture described above.
+
+<img src="https://i0.wp.com/piotrminkowski.com/wp-content/uploads/2023/10/Screenshot-2023-10-11-at-13.33.13.png" title="Architecture"><br/>
+
+## Running
+
+You need to have JDK17+ and Maven. Also run Docker on your machine to enable Zipkin container.
+Then just run the app with the following command:
+```shell
+$ mvn spring-boot:run
+```
