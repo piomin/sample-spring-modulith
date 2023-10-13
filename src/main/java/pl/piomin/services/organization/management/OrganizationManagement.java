@@ -54,6 +54,14 @@ public class OrganizationManagement implements OrganizationExternalAPI {
     }
 
     @Override
+    public OrganizationDTO findByIdWithDepartmentsAndEmployees(Long id) {
+        OrganizationDTO dto = repository.findDTOById(id);
+        List<DepartmentDTO> dtos = departmentInternalAPI.getDepartmentsByOrganizationIdWithEmployees(id);
+        dto.departments().addAll(dtos);
+        return dto;
+    }
+
+    @Override
     @Transactional
     public OrganizationDTO add(OrganizationDTO organization) {
         OrganizationDTO dto = mapper.organizationToOrganizationDTO(

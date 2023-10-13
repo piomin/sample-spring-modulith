@@ -30,6 +30,11 @@ public class GatewayManagement {
         return organizationExternalAPI.findByIdWithDepartments(id);
     }
 
+    @GetMapping("/organizations/{id}/with-departments-and-employees")
+    public OrganizationDTO apiOrganizationWithDepartmentsAndEmployees(@PathVariable("id") Long id) {
+        return organizationExternalAPI.findByIdWithDepartmentsAndEmployees(id);
+    }
+
     @PostMapping("/organizations")
     public OrganizationDTO apiAddOrganization(@RequestBody OrganizationDTO o) {
         return organizationExternalAPI.add(o);

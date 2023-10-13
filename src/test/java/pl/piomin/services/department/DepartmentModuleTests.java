@@ -15,22 +15,24 @@ import pl.piomin.services.OrganizationAddEvent;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DepartmentModuleTests {
 
+    private static final long TEST_ID = 100;
+
     @Autowired
     DepartmentRepository repository;
 
     @Test
     @Order(1)
     void shouldAddDepartmentsOnEvent(Scenario scenario) {
-        scenario.publish(new OrganizationAddEvent(1L))
-                .andWaitForStateChange(() -> repository.count())
-                .andVerify(result -> {assert result.intValue() > 0;});
+        scenario.publish(new OrganizationAddEvent(TEST_ID))
+                .andWaitForStateChange(() -> repository.findByOrganizationId(TEST_ID))
+                .andVerify(result -> {assert !result.isEmpty();});
     }
 
     @Test
     @Order(2)
     void shouldRemoveDepartmentsOnEvent(Scenario scenario) {
-        scenario.publish(new OrganizationRemoveEvent(1L))
-                .andWaitForStateChange(() -> repository.count())
-                .andVerify(result -> {assert result.intValue() == 0;});
+        scenario.publish(new OrganizationRemoveEvent(TEST_ID))
+                .andWaitForStateChange(() -> repository.findByOrganizationId(TEST_ID))
+                .andVerify(result -> {assert result.isEmpty();});
     }
 }

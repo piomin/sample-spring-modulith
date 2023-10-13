@@ -1,0 +1,3 @@
+spring.application.name: sample-spring-modulith
+management.tracing.sampling.probability: 1.0
+management.endpoints.web.exposure.include: "*"

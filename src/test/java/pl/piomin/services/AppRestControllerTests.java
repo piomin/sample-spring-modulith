@@ -35,4 +35,12 @@ public class AppRestControllerTests {
         dep = restTemplate.postForObject("/api/departments", dep, DepartmentDTO.class);
         assertNotNull(dep.id());
     }
+
+    @Test
+    @Order(2)
+    void shouldFindDepartmentWithEmployees() {
+        DepartmentDTO dep = restTemplate.getForObject("/api/departments/{id}/with-employees", DepartmentDTO.class, 1L);
+        assertNotNull(dep);
+        assertNotNull(dep.id());
+    }
 }
