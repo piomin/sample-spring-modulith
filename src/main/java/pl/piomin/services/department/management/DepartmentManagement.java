@@ -2,7 +2,6 @@ package pl.piomin.services.department.management;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.modulith.ApplicationModuleListener;
 import org.springframework.stereotype.Service;
 import pl.piomin.services.OrganizationAddEvent;
@@ -56,8 +55,8 @@ public class DepartmentManagement implements DepartmentInternalAPI, DepartmentEx
 
     @Override
     public DepartmentDTO add(DepartmentDTO department) {
-        return mapper.departmentToEmployeeDTO(
-                repository.save(mapper.departmentDTOToEmployee(department))
+        return mapper.departmentToDepartmentDTO(
+                repository.save(mapper.departmentDTOToDepartment(department))
         );
     }
 
