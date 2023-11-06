@@ -8,6 +8,6 @@ import pl.piomin.services.department.model.Department;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface DepartmentMapper {
-    DepartmentDTO departmentToEmployeeDTO(Department department);
-    Department departmentDTOToEmployee(DepartmentDTO departmentDTO);
+    DepartmentDTO departmentToDepartmentDTO(Department department);
+    Department departmentDTOToDepartment(DepartmentDTO departmentDTO);
 }
