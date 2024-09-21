@@ -97,7 +97,7 @@
             <dependency>
                 <groupId>org.springframework.modulith</groupId>
                 <artifactId>spring-modulith-bom</artifactId>
-                <version>1.2.3</version>
+                <version>1.2.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
