@@ -1,0 +1,19 @@
+== SpringModulith
+plantuml::components.puml[,,format=svg]
+
+== Employee
+plantuml::module-employee.puml[,,format=svg]
+include::module-employee.adoc[]
+
+== Department
+plantuml::module-department.puml[,,format=svg]
+include::module-department.adoc[]
+
+== Organization
+plantuml::module-organization.puml[,,format=svg]
+include::module-organization.adoc[]
+
+== Gateway
+plantuml::module-gateway.puml[,,format=svg]
+include::module-gateway.adoc[]
+

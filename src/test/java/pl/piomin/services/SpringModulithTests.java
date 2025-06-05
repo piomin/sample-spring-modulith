@@ -18,6 +18,8 @@ public class SpringModulithTests {
         new Documenter(modules)
                 .writeModuleCanvases()
                 .writeModulesAsPlantUml()
+                .writeDocumentation()
+                .writeAggregatingDocument()
                 .writeIndividualModulesAsPlantUml();
     }
 }

@@ -1,0 +1,22 @@
+@startuml
+set separator none
+title Organization
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+Container_Boundary("SpringModulith.SpringModulith_boundary", "SpringModulith", $tags="") {
+  Component(SpringModulith.SpringModulith.Employee, "Employee", $techn="Module", $descr="", $tags="", $link="")
+  Component(SpringModulith.SpringModulith.Department, "Department", $techn="Module", $descr="", $tags="", $link="")
+  Component(SpringModulith.SpringModulith.Organization, "Organization", $techn="Module", $descr="", $tags="", $link="")
+}
+
+Rel(SpringModulith.SpringModulith.Organization, SpringModulith.SpringModulith.Department, "uses", $techn="", $tags="", $link="")
+Rel(SpringModulith.SpringModulith.Organization, SpringModulith.SpringModulith.Employee, "uses", $techn="", $tags="", $link="")
+Rel(SpringModulith.SpringModulith.Department, SpringModulith.SpringModulith.Employee, "uses", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

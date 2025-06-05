@@ -1,0 +1,13 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.gateway`
+|Spring components
+|_Controllers_
+
+* `p.p.s.g.GatewayManagement`
+|Bean references
+|* `p.p.s.d.DepartmentExternalAPI` (in Department)
+* `p.p.s.e.EmployeeExternalAPI` (in Employee)
+* `p.p.s.o.OrganizationExternalAPI` (in Organization)
+|===

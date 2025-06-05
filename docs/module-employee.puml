@@ -1,0 +1,17 @@
+@startuml
+set separator none
+title Employee
+
+top to bottom direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Component>
+
+Container_Boundary("SpringModulith.SpringModulith_boundary", "SpringModulith", $tags="") {
+  Component(SpringModulith.SpringModulith.Employee, "Employee", $techn="Module", $descr="", $tags="", $link="")
+}
+
+
+SHOW_LEGEND(true)
+@enduml

@@ -1,0 +1,11 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.employee`
+|Spring components
+|_Services_
+
+* `p.p.s.e.EmployeeInternalAPI`, `p.p.s.e.EmployeeExternalAPI` (via `p.p.s.e.management.EmployeeManagement`)
+|Events listened to
+|* `p.p.s.OrganizationRemoveEvent` (async) 
+|===
