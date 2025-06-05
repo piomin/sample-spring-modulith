@@ -1,0 +1,53 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.employee`
+|Spring components
+|_Services_
+
+* `p.p.s.e.EmployeeInternalAPI`, `p.p.s.e.EmployeeExternalAPI` (via `p.p.s.e.management.EmployeeManagement`)
+|Events listened to
+|* `p.p.s.OrganizationRemoveEvent` (async)
+|===
+
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.department`
+|Spring components
+|_Services_
+
+* `p.p.s.d.DepartmentInternalAPI`, `p.p.s.d.DepartmentExternalAPI` (via `p.p.s.d.management.DepartmentManagement`)
+|Bean references
+|* `p.p.s.e.EmployeeInternalAPI` (in Employee)
+|Events listened to
+|* `p.p.s.OrganizationAddEvent` (async)
+* `p.p.s.OrganizationRemoveEvent` (async)
+|===
+
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.organization`
+|Spring components
+|_Services_
+
+* `p.p.s.o.OrganizationExternalAPI` (via `p.p.s.o.management.OrganizationManagement`)
+|Bean references
+|* `p.p.s.d.DepartmentInternalAPI` (in Department)
+* `p.p.s.e.EmployeeInternalAPI` (in Employee)
+|===
+
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`pl.piomin.services.gateway`
+|Spring components
+|_Controllers_
+
+* `p.p.s.g.GatewayManagement`
+|Bean references
+|* `p.p.s.d.DepartmentExternalAPI` (in Department)
+* `p.p.s.e.EmployeeExternalAPI` (in Employee)
+* `p.p.s.o.OrganizationExternalAPI` (in Organization)
+|===
