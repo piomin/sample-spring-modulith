@@ -11,6 +11,8 @@ import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 import pl.piomin.services.OrganizationRemoveEvent;
 import pl.piomin.services.department.management.DepartmentManagement;
 import pl.piomin.services.department.repository.DepartmentRepository;
@@ -40,17 +42,15 @@ public class DepartmentModuleTests {
                 });
     }
 
-    // Hard to verify what's happened, because test fails
-    // TODO - uncomment to try in the next version of Spring Modulith
-//    @Test
-//    @Order(2)
+    @Test
+    @Order(2)
     void shouldRemoveDepartmentsOnEvent(Scenario scenario) {
         scenario.publish(new OrganizationRemoveEvent(TEST_ID))
                 .andWaitForStateChange(() -> {
                     var r = repository.findByOrganizationId(TEST_ID);
                     LOG.info("State on remove: {}", r);
                     return r;
-                })
+                }, List::isEmpty)
                 .andVerify(result -> {
                     assert result.isEmpty();
                 });
