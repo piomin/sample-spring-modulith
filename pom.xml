@@ -17,7 +17,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <springdoc.version>3.0.1</springdoc.version>
+        <springdoc.version>3.0.2</springdoc.version>
         <sonar.projectKey>piomin_sample-spring-modulith</sonar.projectKey>
         <sonar.organization>piomin</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
