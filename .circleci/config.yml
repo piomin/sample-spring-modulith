@@ -16,7 +16,7 @@ executors:
       - image: 'cimg/openjdk:25.0.5'
 
 orbs:
-  maven: circleci/maven@2.2.0
+  maven: circleci/maven@2.4.0
 
 workflows:
   maven_test:
